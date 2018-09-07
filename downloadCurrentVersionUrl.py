@@ -16,7 +16,6 @@ class Main:
        if re.search("offercodeapitarget=", rd):
          return rd.strip().split("=")[-1].split("\"")[1]
          break
-    
 
  def checkOffercodeExist(self):
     if not os.path.isfile("./offercodes/index.json"):
@@ -61,6 +60,13 @@ class Main:
     #
     dirname = "./currentversions"
     self.cleandirectory(dirname, currntversioninfo)
+    #
+    currentdirn = os.getcwd()
+    for srvn in currntversioninfo.keys():
+       chdirn = currentdirn + "/currentversions/" + srvn
+       os.chdir(chdirn)
+       os.system("./downloadrun.sh&")
+       os.chdir(currentdirn)
 
  def __init__(self, argv):
    pass
