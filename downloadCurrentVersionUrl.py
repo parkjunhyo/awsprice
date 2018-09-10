@@ -37,9 +37,15 @@ class Main:
        #
        runfile = path + "/downloadrun.sh"
        writemsg = "wget "+currntversioninfo[sn]
+       #
+       ltemp = writemsg.strip().split('.')[:-1]
+       ltemp.append(u'csv')
+       csvdown = '.'.join(ltemp)
+       #
        f = open(runfile, 'w')
        f.write("#! /usr/bin/env bash\n")
        f.write(writemsg+"\n")
+       f.write(csvdown+"\n")
        f.close()
        os.chmod(runfile, 0777) 
 
